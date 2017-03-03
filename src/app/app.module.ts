@@ -16,31 +16,30 @@ import { AddShowComponent } from './add-show/add-show.component';
 
 const appRoutes: Routes = [
   {
-    path:'songs',
+    path: 'songs',
     component: SongsListComponent
   },
   {
-    path:'add-song',
+    path: 'add-song',
     component: AddSongComponent
   },
   {
-    path:'upload',
+    path: 'upload',
     component: UploadSongComponent
   },
   {
-    path:'shows',
+    path: 'shows',
     component: ShowsListComponent
   },
   {
-    path:'add-show',
+    path: 'add-show',
     component: AddShowComponent
   },
   {
-    path:'',
-    redirectTo:'/songs',
-    pathMatch:'full'
+    path: '',
+    redirectTo: '/songs',
+    pathMatch: 'full'
   }
-  
 ];
 
 @NgModule({
