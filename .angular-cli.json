@@ -23,6 +23,7 @@
         "styles.css"
       ],
       "scripts": [
+        "./assets/jsmediatags.min.js",
         "../node_modules/tether/dist/js/tether.min.js",
         "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/jquery-ui-bundle/jquery-ui.min.js",
