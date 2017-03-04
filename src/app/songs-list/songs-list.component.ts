@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+
+declare var jQuery: any;
 
 @Component({
   selector: 'app-songs-list',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SongsListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _elRef: ElementRef) { 
+     
+  }
 
   ngOnInit() {
+    var ls = jQuery(this._elRef.nativeElement).find("#sortable");
+    ls.sortable({
+      update: function(event, ui) {
+        var serial = ls.sortable("serialize", {key: "sort"});
+        console.log(serial.toString());
+      }, 
+    });
+  }
+  
+  ngAfterViewInit() {
+   
   }
 
 }
