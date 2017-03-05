@@ -2,3 +2,8 @@
 body {
     background-color: #E0E0E0
 }
+
+tr {
+    white-space: nowrap;
+}
+

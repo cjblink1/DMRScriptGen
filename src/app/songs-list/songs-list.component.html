@@ -4,33 +4,22 @@
         <button type="button" routerLink="/add-song" class="btn btn-secondary">Add Song</button>
         <button type="button" routerLink="/upload" class="btn btn-secondary">Upload</button>
     </div>
-  <table class="table table-striped">
+    <br><br>
+  <table class="table" style="width:100%">
   <thead>
     <tr>
-      <th>#</th>
+      <th><span class="fa fa-bars"></span></th>
       <th>Title</th>
       <th>Artist</th>
-      <th>Album</th>
+      <th class="hidden-xs-down">Album</th>
     </tr>
   </thead>
   <tbody id="sortable">
-    <tr id="ls-1">
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr id="ls-2">
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr id="ls-3">
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
+    <tr *ngFor="let item of items | async; let i = index" [id]="i+'='+item.$key">
+      <td class="handle"><span class="fa fa-bars"></span></td>
+      <td>{{item.title}}</td>
+      <td>{{item.artist}}</td>
+      <td class="hidden-xs-down">{{item.album}}</td>
     </tr>
   </tbody>
 </table>

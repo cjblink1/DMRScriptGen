@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import { AngularFireModule } from 'angularfire2';
 
 
 import { AppComponent } from './app.component';
@@ -13,6 +14,14 @@ import { AddSongComponent } from './add-song/add-song.component';
 import { UploadSongComponent } from './upload-song/upload-song.component';
 import { ShowsListComponent } from './shows-list/shows-list.component';
 import { AddShowComponent } from './add-show/add-show.component';
+
+export const firebaseConfig = {
+  apiKey: 'AIzaSyAK-_KOML1_mhCqz0DJQznToef-nDI2llY',
+  authDomain: 'dmrscriptgen.firebaseapp.com',
+  databaseURL: 'https://dmrscriptgen.firebaseio.com',
+  storageBucket: 'dmrscriptgen.appspot.com',
+  messagingSenderId: '35773705526'
+};
 
 const appRoutes: Routes = [
   {
@@ -51,13 +60,14 @@ const appRoutes: Routes = [
     AddSongComponent,
     UploadSongComponent,
     ShowsListComponent,
-    AddShowComponent
+    AddShowComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]

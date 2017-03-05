@@ -3,20 +3,20 @@
     <form>
     <div class="input-group">
       <span class="input-group-addon">Title</span>
-      <input class="form-control" type="text" />
+      <input [(ngModel)]="song.title" class="form-control" type="text" name="title"/>
     </div>
     <br>
     <div class="input-group">
       <span class="input-group-addon">Artist</span>
-      <input class="form-control" type="text"  />
+      <input [(ngModel)]="song.artist" class="form-control" type="text" name="artist" />
     </div>
     <br>
     <div class="input-group">
       <span class="input-group-addon">Album</span>
-      <input class="form-control" type="text" />
+      <input [(ngModel)]="song.album" class="form-control" type="text" name="album"/>
     </div>
     <br>
-    <button type="submit" routerLink="/" class="btn btn-primary">Submit</button>
+    <button type="submit" (click)="addSongAction($event)" routerLink="/" class="btn btn-primary">Submit</button>
     </form>
   </div>
 </div>

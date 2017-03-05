@@ -1,4 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Pipe } from '@angular/core';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { Song } from '../song';
 
 declare var jQuery: any;
 
@@ -9,22 +11,37 @@ declare var jQuery: any;
 })
 export class SongsListComponent implements OnInit {
 
-  constructor(private _elRef: ElementRef) { 
+  items: FirebaseListObservable<any[]>;
+
+  serial: string[];
+
+  constructor(private _elRef: ElementRef, private af: AngularFire) { 
+      this.items = af.database.list('/songs', {
+        query:{
+          orderByChild: 'displayOrder'
+        }
+      });
+      this.serial = null;
      
   }
 
   ngOnInit() {
     var ls = jQuery(this._elRef.nativeElement).find("#sortable");
     ls.sortable({
-      update: function(event, ui) {
-        var serial = ls.sortable("serialize", {key: "sort"});
-        console.log(serial.toString());
+      update: (event, ui) => {
+        this.serial = ls.sortable("toArray");
+        this.serial.forEach((value, index, array) => {
+          var itemInfo = this.serial[index].split('=', 2);
+          var oldDisplayOrder = itemInfo[0];
+          var key = itemInfo[1];
+          if (Number(oldDisplayOrder) != index) {
+            this.af.database.object('/songs/'+key+'/displayOrder').set(index);
+          }
+        
+        });
+        console.log(this.serial);
       }, 
+      handle: '.handle'
     });
   }
-  
-  ngAfterViewInit() {
-   
-  }
-
 }

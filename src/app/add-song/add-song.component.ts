@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { AngularFire } from 'angularfire2';
+import { Song } from '../song';
 
 @Component({
   selector: 'app-add-song',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddSongComponent implements OnInit {
 
-  constructor() { }
+  song: Song;
+
+  constructor(private af: AngularFire) {
+    this.song = new Song();
+  }
 
   ngOnInit() {
+  }
+
+  addSongAction(e) {
+    console.log(this.song);
+    this.af.database.list('songs').push(this.song);
   }
 
 }
